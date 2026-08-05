@@ -201,6 +201,12 @@ export default function CaseStudies() {
                 <X size={20} />
               </button>
               <div className="relative h-64 overflow-hidden bg-slate-100">
+                                  <img
+                    src={activeProject.image}
+                    alt={`${activeProject.title} project thumbnail`}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(241,89,42,0.16),transparent_35%),linear-gradient(180deg,rgba(255,255,255,0.5),transparent)]" />
               </div>
               <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
@@ -268,3 +274,5 @@ export default function CaseStudies() {
     </section>
   );
 }
+
+
