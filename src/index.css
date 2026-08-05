@@ -1,0 +1,466 @@
+@import "tailwindcss";
+
+:root {
+  --ink-900: #14171f;
+  --ink-800: #2b2f36;
+  --ink-600: #6b6f78;
+  --ink-400: #9aa0a8;
+  --ink-200: #dfe3e8;
+  --ink-100: #f5f6f7;
+
+  --orange-50: #fff7f3;
+  --orange-300: #ffad6b;
+  --orange-500: #f1592a;
+  --orange-600: #d64512;
+}
+
+/* Page container helper used across components */
+.container-page {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 1280px) {
+  .container-page {
+    max-width: 1280px;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* Custom color utilities (used by components) */
+.text-ink-900 {
+  color: var(--ink-900);
+}
+.text-ink-800 {
+  color: var(--ink-800);
+}
+.text-ink-600 {
+  color: var(--ink-600);
+}
+.text-ink-400 {
+  color: var(--ink-400);
+}
+.border-ink-200 {
+  border-color: var(--ink-200);
+}
+.border-ink-100 {
+  border-color: var(--ink-100);
+}
+.bg-ink-50 {
+  background-color: var(--ink-100);
+}
+.text-ink-300 {
+  color: #c7ccd0;
+}
+.text-ink-500 {
+  color: var(--ink-600);
+}
+.text-ink-700 {
+  color: #3b3f47;
+}
+.bg-orange-50 {
+  background-color: var(--orange-50);
+}
+.text-orange-500 {
+  color: var(--orange-500);
+}
+.bg-orange-500 {
+  background-color: var(--orange-500);
+}
+.bg-orange-600 {
+  background-color: var(--orange-600);
+}
+.bg-orange-300 {
+  background-color: var(--orange-300);
+}
+
+/* Small utility tweaks for typography and spacing to better match the mockup */
+.font-display {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial;
+}
+.leading-tight {
+  line-height: 1.08;
+}
+.tracking-tight {
+  letter-spacing: -0.01em;
+}
+
+.contact-toast {
+  display: block;
+  border-radius: 18px;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+  animation: toast-fade 0.32s ease-out;
+}
+.contact-toast--success {
+  border-color: rgba(16, 185, 129, 0.18);
+}
+.contact-toast--error {
+  border-color: rgba(239, 68, 68, 0.18);
+}
+@keyframes toast-fade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* AI Search Visibility styles */
+.ai-visibility-section {
+  position: relative;
+  background-image: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.02) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.ai-visual-wrap {
+  position: relative;
+  height: 420px;
+  margin: 0 auto;
+  max-width: 820px;
+}
+.ai-visual-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.ai-conn {
+  fill: none;
+  stroke: #cbd5e1; /* soft gray */
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.95;
+}
+.ai-conn--active {
+  stroke: #ff6b35;
+  stroke-width: 2.8;
+}
+.ai-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.ai-center-card {
+  width: 160px;
+  height: 100px;
+  border-radius: 16px;
+  background:
+    radial-gradient(
+      1200px 400px at 30% 20%,
+      rgba(255, 107, 53, 0.06),
+      transparent 10%
+    ),
+    #ffffff;
+  box-shadow: 0 12px 30px rgba(13, 17, 23, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid rgba(15, 23, 42, 0.04);
+}
+.ai-center-icon {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 107, 53, 0.12),
+    rgba(255, 107, 53, 0.06)
+  );
+}
+.ai-center-label {
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--ink-900);
+}
+.ai-node {
+  position: absolute;
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(0.92) translateY(6px);
+  transition:
+    transform 280ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    opacity 220ms ease;
+  z-index: 12;
+}
+.ai-node-card {
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.04);
+}
+.ai-node-label {
+  font-size: 12px;
+  color: var(--orange-500);
+  margin-top: 6px;
+}
+.ai-node-tip {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -8px);
+  top: -36px;
+  background: #0f172a;
+  color: white;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+  z-index: 30;
+}
+.ai-node-tip--visible {
+  opacity: 1;
+  transform: translate(-50%, -12px);
+}
+
+/* positions for six nodes around the center (desktop) */
+.ai-node--google {
+  left: 12%;
+  top: 20%;
+}
+.ai-node--chatgpt {
+  right: 12%;
+  top: 18%;
+}
+.ai-node--gemini {
+  left: 6%;
+  top: 50%;
+}
+.ai-node--perplexity {
+  right: 6%;
+  top: 50%;
+}
+.ai-node--claude {
+  left: 18%;
+  bottom: 18%;
+}
+.ai-node--copilot {
+  right: 18%;
+  bottom: 18%;
+}
+
+/* reveal animation (add a small delay via inline style) */
+.ai-node[style] {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.ai-node:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 18px 32px rgba(15, 23, 42, 0.12);
+}
+
+/* responsive: tablet -> center above, nodes in two rows */
+@media (max-width: 1024px) {
+  .ai-visual-wrap {
+    height: 520px;
+  }
+  .ai-node--google {
+    left: 8%;
+    top: 12%;
+  }
+  .ai-node--chatgpt {
+    right: 8%;
+    top: 12%;
+  }
+  .ai-node--gemini {
+    left: 6%;
+    top: 42%;
+  }
+  .ai-node--perplexity {
+    right: 6%;
+    top: 42%;
+  }
+  .ai-node--claude {
+    left: 12%;
+    bottom: 12%;
+  }
+  .ai-node--copilot {
+    right: 12%;
+    bottom: 12%;
+  }
+}
+
+@media (max-width: 640px) {
+  .ai-visual-wrap {
+    height: 520px;
+  }
+  .ai-node {
+    width: 74px;
+    height: 74px;
+  }
+  .ai-node-card {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+/* subtle background grid */
+.ai-visibility-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+/* small adjustments for feature cards on mobile to be 2 columns then 1 */
+@media (max-width: 640px) {
+  .ai-visibility-section .lg\:grid-cols-3 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+/* Floating WhatsApp styles */
+.floating-whatsapp {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 9999px;
+  background: #25d366;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 12px;
+  box-shadow: 0 8px 24px rgba(13, 17, 23, 0.12);
+  z-index: 9999;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transform: translateY(10px);
+  opacity: 0;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    width 0.28s ease;
+  will-change: transform, opacity;
+}
+.floating-whatsapp:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 6px rgba(37, 211, 102, 0.14);
+}
+.floating-whatsapp--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.floating-whatsapp__icon {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+}
+.floating-whatsapp__label {
+  display: inline-block;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition:
+    opacity 0.25s ease,
+    max-width 0.28s ease;
+}
+
+/* Hover expand on desktop */
+@media (min-width: 768px) {
+  .floating-whatsapp:hover {
+    transform: translateY(-6px) scale(1.08);
+    width: auto;
+    padding-left: 14px;
+    padding-right: 16px;
+  }
+  .floating-whatsapp:hover .floating-whatsapp__label {
+    opacity: 1;
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 767px) {
+  .floating-whatsapp {
+    width: 60px;
+    padding: 0;
+  }
+  .floating-whatsapp__label {
+    display: none;
+  }
+}
+
+/* gentle pulse animation */
+@keyframes fw-pulse {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.03);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+.floating-whatsapp--visible:not(:hover) {
+  animation: fw-pulse 6s ease-in-out infinite 1s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-whatsapp,
+  .floating-whatsapp--visible:not(:hover) {
+    transition: none;
+    animation: none;
+  }
+}
