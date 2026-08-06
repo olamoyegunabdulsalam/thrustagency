@@ -4,11 +4,11 @@ import { Menu, X } from "lucide-react";
 import Button from "./ui/Button";
 
 const links = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services", dropdown: true },
-  { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Home", id: "home" },
+  { label: "Services", id: "services" },
+  { label: "Work", id: "work" },
+  { label: "Process", id: "process" },
+  { label: "FAQ", id: "faq" },
 ];
 
 export default function Navbar() {
@@ -56,12 +56,11 @@ export default function Navbar() {
             {links.map((link) => (
               <li key={link.label}>
                 <a
-                  href={link.href}
-                  className={`flex items-center gap-1 text-sm font-medium transition-colors ${
-                    link.label === "Home"
-                      ? "text-orange-500"
-                      : "text-ink-800 hover:text-orange-500"
-                  }`}
+                  href={`#${link.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.__scrollTo?.(link.id);
+                  }}
                 >
                   {link.label}
                 </a>
@@ -103,9 +102,15 @@ export default function Navbar() {
               {links.map((link) => (
                 <li key={link.label}>
                   <a
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="text-sm font-medium text-ink-800"
+                    href={`#${link.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileOpen(false);
+
+                      setTimeout(() => {
+                        window.__scrollTo?.(link.id);
+                      }, 200);
+                    }}
                   >
                     {link.label}
                   </a>

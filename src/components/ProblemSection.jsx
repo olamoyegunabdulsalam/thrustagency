@@ -1,94 +1,93 @@
 import { motion } from "framer-motion";
-import { Monitor, Users, Gift, Rocket, ArrowRight } from "lucide-react";
+import { BarChart3, BrainCircuit, Layers3, Sparkles } from "lucide-react";
 import Section from "./ui/Section";
 import Card from "./ui/Card";
+import Button from "./ui/Button";
 
-const problems = [
+const values = [
   {
-    num: "01",
-    icon: Monitor,
-    title: "Beautiful Website",
-    bold: "But no traffic.",
-    desc: "Your site looks good, but nobody sees it.",
+    icon: Sparkles,
+    title: "Growth Focused",
+    desc: "Every solution we build is designed to help businesses grow faster and reach the right audience.",
   },
   {
-    num: "02",
-    icon: Users,
-    title: "Traffic",
-    bold: "But no conversions.",
-    desc: "People visit, but very few take action.",
+    icon: BrainCircuit,
+    title: "Strategic Thinking",
+    desc: "We combine research, planning, and creativity to solve business challenges.",
   },
   {
-    num: "03",
-    icon: Gift,
-    title: "Great Product",
-    bold: "But hard to discover.",
-    desc: "You have something valuable, but the right people can't find it.",
+    icon: Layers3,
+    title: "Modern Development",
+    desc: "From websites to software platforms, we create scalable digital experiences.",
   },
   {
-    num: "04",
-    icon: Rocket,
-    title: "Thrust",
-    bold: "Builds. Optimizes. Grows.",
-    desc: "We build digital growth systems that make you impossible to ignore.",
-    highlight: true,
+    icon: BarChart3,
+    title: "Measurable Results",
+    desc: "Everything we build is focused on delivering measurable business outcomes.",
   },
 ];
 
 export default function ProblemSection() {
   return (
     <Section
-      eyebrow="The Challenge"
-      title="Most businesses have the pieces, but not the growth."
+      id="about"
+      eyebrow="ABOUT THRUST"
+      title="Accelerating business growth through strategy, design, and technology."
+      className="bg-white"
     >
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-        {problems.map((p, i) => (
-          <div key={p.num} className="relative">
-            <Card
-              delay={i * 0.1}
-              className={`p-8 h-full ${
-                p.highlight
-                  ? "border-orange-500 bg-orange-50/40 border-2"
-                  : "bg-ink-50/40"
-              }`}
+      <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-start">
+        <div className="max-w-2xl text-left">
+          <p className="text-lg leading-8 text-ink-600">
+            Thrust Agency is a development agency dedicated to helping
+            businesses grow, strengthen their digital presence, and connect with
+            the right audience. We combine development, design, strategy, and
+            digital growth solutions to build products and experiences that
+            deliver measurable business results.
+          </p>
+          <p className="mt-6 text-lg leading-8 text-ink-600">
+            Whether you're launching a new venture, scaling an existing
+            business, or improving your online visibility, we work as your
+            growth partner by building purposeful digital solutions that drive
+            sustainable growth.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Button
+              variant="primary"
+              onClick={() => window.__scrollTo && window.__scrollTo("contact")}
             >
-              <div className="flex items-start justify-between mb-6">
-                <span
-                  className={`flex items-center justify-center w-12 h-12 rounded-xl ${
-                    p.highlight
-                      ? "bg-orange-500 text-white"
-                      : "bg-white border border-ink-100 text-orange-500"
-                  }`}
-                >
-                  <p.icon size={22} />
-                </span>
-                <span className="text-sm font-bold text-ink-300">{p.num}</span>
-              </div>
-              <h3 className="font-display font-bold text-ink-900 mb-1">
-                {p.title}
-              </h3>
-              <p
-                className={`font-display font-bold mb-2 ${
-                  p.highlight ? "text-orange-500" : "text-ink-900"
-                }`}
-              >
-                {p.bold}
-              </p>
-              <p className="text-sm text-ink-500 leading-relaxed">{p.desc}</p>
-            </Card>
-            {i < problems.length - 1 && (
-              <motion.span
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 + i * 0.1 }}
-                className="hidden lg:flex absolute top-1/2 -right-5 -translate-y-1/2 z-10 items-center justify-center w-6 h-6 text-orange-400"
-              >
-                <ArrowRight size={18} />
-              </motion.span>
-            )}
+              Start Your Project
+            </Button>
           </div>
-        ))}
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="mt-10 text-lg font-semibold leading-8 text-ink-900"
+          >
+            “We don't just build digital products, we build momentum for
+            businesses ready to grow.”
+          </motion.p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-5">
+          {values.map((value, index) => (
+            <Card
+              key={value.title}
+              delay={index * 0.06}
+              className="p-6 bg-ink-50/40"
+              hover
+            >
+              <span className="flex items-center justify-center w-12 h-12 rounded-xl bg-white border border-ink-100 text-orange-500 mb-5">
+                <value.icon size={20} />
+              </span>
+              <h3 className="font-display font-semibold text-lg text-ink-900 mb-2">
+                {value.title}
+              </h3>
+              <p className="text-sm leading-7 text-ink-500">{value.desc}</p>
+            </Card>
+          ))}
+        </div>
       </div>
     </Section>
   );
